@@ -2,11 +2,11 @@
 	"name": "booksearch-test",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "./src/index.jsx",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "webpack serve",
-    "clean": "rm -rf dist",
+		"clean": "rm -rf dist",
 		"build": "NODE_ENV=production webpack",
 		"build-dev": "webpack"
 	},
@@ -23,6 +23,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.14.2",
 		"@babel/preset-env": "^7.14.2",
+		"@babel/preset-react": "^7.13.13",
 		"babel-loader": "^8.2.2",
 		"css-loader": "^5.2.4",
 		"eslint": "^7.23.0",
@@ -42,6 +43,7 @@
 		"webpack-dev-server": "^3.11.2"
 	},
 	"dependencies": {
-		"react": "^17.0.2"
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
 	}
 }

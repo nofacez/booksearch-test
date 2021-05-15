@@ -10,7 +10,10 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
 
   mode,
-
+  entry: './src/index.jsx',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {
