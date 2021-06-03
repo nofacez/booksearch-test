@@ -10,7 +10,9 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
 
   mode,
-  entry: './src/index.jsx',
+  entry: {
+    app: ['babel-polyfill', './src/index.jsx'],
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
