@@ -1,15 +1,19 @@
 import React from 'react';
-import SearchGroup from './SearchGroup.jsx';
-import Books from './Books.jsx';
+import { Provider } from 'react-redux';
+import getStore from '../app/store.js';
+import Main from './Main.jsx';
+import Header from './Header.jsx';
 
-const App = () => (
-  <div className="app">
-    <header className="header"> Header </header>
-    <main className="main">
-      <SearchGroup />
-      <Books />
-    </main>
-  </div>
-);
+const App = () => {
+  const store = getStore();
+  return (
+    <Provider store={store}>
+      <div className="app">
+        <Header />
+        <Main />
+      </div>
+    </Provider>
+  );
+};
 
 export default App;
