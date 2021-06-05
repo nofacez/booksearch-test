@@ -1,16 +1,27 @@
 import React from 'react';
 import { uniqueId } from 'lodash';
+import { useDispatch } from 'react-redux';
 
 import routes from '../routes.js';
+import { openModal } from '../slices/modalSlice.js';
 
-const BookSnippet = ({ coverId, title, author }) => {
+const BookSnippet = ({
+  coverId, title, author, id,
+}) => {
   const coverSnippetUrl = routes.smallCoverRoute(coverId);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(openModal({ id }));
+  };
+
   return (
-    <div className="book-snippet mb-30" key={uniqueId()}>
-      <img src={coverSnippetUrl} alt="book cover" className="snippet-cover" />
-      <h2 className="snippet-title">{title}</h2>
-      <h3 className="snippet-author">{author}</h3>
-    </div>
+    <li className="book-snippet mb-30" key={uniqueId()}>
+      <button type="button" onClick={handleClick}>
+        { coverId ? <img src={coverSnippetUrl} alt="book cover" className="snippet-cover" /> : <h1 className="no-cover">?</h1>}
+        <h2 className="snippet-title">{title}</h2>
+        <h3 className="snippet-author">{author}</h3>
+      </button>
+    </li>
   );
 };
 

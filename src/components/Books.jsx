@@ -16,10 +16,12 @@ const Books = () => {
   console.log('books', books);
 
   return (
-    <div className="container">
-      <div className="books-list">
-        { books.map(({ coverId, title, author }) => <BookSnippet coverId={coverId} title={title} author={author} />)}
-      </div>
+    <div className="section">
+      <ul className="books-list">
+        { books.map(({
+          coverId, title, author, key,
+        }) => (<BookSnippet coverId={coverId} title={title} author={author} id={key} />))}
+      </ul>
     </div>
   );
 };

@@ -24,7 +24,7 @@ const SearchGroup = () => {
       const bookslist = response.data.docs;
       const filtered = bookslist.map((book) => {
         const {
-          title, cover_i, author_name, publish_year, publisher, isbn,
+          title, cover_i, author_name, publish_year, publisher, isbn, key,
         } = book;
         return {
           title,
@@ -33,6 +33,7 @@ const SearchGroup = () => {
           date: publish_year,
           publisher,
           isbn,
+          key,
         };
       });
       console.log(filtered);
@@ -64,12 +65,15 @@ const SearchGroup = () => {
   };
 
   return (
-    <div className="search-group">
-      <form className="d-flex">
-        <input type="text" className="search-input" value={value} onChange={handleChange} required placeholder="Enter a book title..." />
-        <button type="submit" className="search-button">Send</button>
-      </form>
+    <div className="section">
+      <div className="search-group">
+        <form className="d-flex">
+          <input type="text" className="search-input" value={value} onChange={handleChange} required placeholder="Enter a book title..." />
+          <button type="submit" className="search-button">Send</button>
+        </form>
+      </div>
     </div>
+
   );
 };
 
