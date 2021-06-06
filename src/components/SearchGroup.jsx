@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-import { getBooks, setLoading, setEmpty } from '../slices/booksSlice.js';
+import { getBooks, setStatus } from '../slices/booksSlice.js';
 import routes from '../routes.js';
 import '../images/search-group-bg.jpg';
 
@@ -14,18 +14,18 @@ const SearchGroup = () => {
   const dispatch = useDispatch();
   const { CancelToken } = axios;
   const source = CancelToken.source();
-  const { loading } = useSelector((state) => state.booksList);
+  const { status } = useSelector((state) => state.booksList);
 
   const getBooksList = async (bookTitle) => {
     try {
-      dispatch(setLoading(true));
+      dispatch(setStatus('loading'));
       const response = await axios.get(routes.searchRoute(bookTitle),
         {
           cancelToken: source.token,
         });
       const bookslist = response.data.docs;
       if (bookslist.length === 0) {
-        dispatch(setEmpty());
+        dispatch(setStatus('noData'));
       } else {
         const filteredBooksList = bookslist.map((book) => {
           const {
@@ -42,11 +42,12 @@ const SearchGroup = () => {
           };
         });
         dispatch(getBooks(filteredBooksList));
+        dispatch(setStatus('normal'));
       }
     } catch (e) {
       console.error(e);
+      dispatch(setStatus('networkIssue'));
     }
-    dispatch(setLoading(false));
   };
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const SearchGroup = () => {
       <div className="search-group">
         <form className="d-flex" onSubmit={handleSubmit}>
           <input type="text" className="search-input" value={value} onChange={handleChange} placeholder="Enter a book title..." required />
-          <button type="submit" aria-label="search" className="search-button" disabled={loading} />
+          <button type="submit" aria-label="search" className="search-button" disabled={status === 'loading'} />
         </form>
       </div>
     </div>

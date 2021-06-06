@@ -4,25 +4,20 @@ export const booksSlice = createSlice({
   name: 'booksList',
   initialState: {
     books: [],
-    loading: false,
-    arrayisEmpty: false,
+    status: null,
   },
   reducers: {
     getBooks: (state, action) => {
       const { payload } = action;
-      return { ...state, books: [...payload], arrayisEmpty: false };
+      return { ...state, books: [...payload] };
     },
-    setLoading: (state, action) => {
+    setStatus: (state, action) => {
       const { payload } = action;
-      return { ...state, loading: payload };
-    },
-    setEmpty: (state) => {
-      const { arrayisEmpty } = state;
-      return ({ ...state, arrayisEmpty: !arrayisEmpty });
+      return { ...state, status: payload };
     },
   },
 });
 
-export const { getBooks, setLoading, setEmpty } = booksSlice.actions;
+export const { getBooks, setStatus } = booksSlice.actions;
 
 export default booksSlice.reducer;
