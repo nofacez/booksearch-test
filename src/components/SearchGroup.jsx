@@ -64,12 +64,17 @@ const SearchGroup = () => {
     setValue(e.target.value);
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    getBooksList(value);
+  };
+
   return (
     <div className="section">
       <div className="search-group">
         <form className="d-flex">
           <input type="text" className="search-input" value={value} onChange={handleChange} required placeholder="Enter a book title..." />
-          <button type="submit" aria-label="search" className="search-button" />
+          <button type="submit" aria-label="search" className="search-button" onClick={handleClick} />
         </form>
       </div>
     </div>
