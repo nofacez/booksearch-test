@@ -1,19 +1,24 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { BounceLoader } from 'react-spinners';
 import BookSnippet from './BookSnippet.jsx';
 
 const Books = () => {
   const Spinner = () => (
-    <span className="sr-only">Loading...</span>
+    <div className="spinner-container">
+      <div className="spinner">
+        <span className="sr-only">Loading...</span>
+        <BounceLoader size={50} />
+      </div>
+      <p className="spinner-text">Browsing the shelves...</p>
+    </div>
   );
   const { books, loading } = useSelector((state) => state.booksList);
 
   if (loading) {
     return <Spinner />;
   }
-
-  console.log('books', books);
 
   return (
     <div className="section">
