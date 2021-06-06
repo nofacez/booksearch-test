@@ -45,8 +45,10 @@ const SearchGroup = () => {
         dispatch(setStatus('normal'));
       }
     } catch (e) {
-      console.error(e);
-      dispatch(setStatus('networkIssue'));
+      if (e.response) {
+        console.error('err', e);
+        dispatch(setStatus('networkIssue'));
+      }
     }
   };
 
@@ -60,6 +62,7 @@ const SearchGroup = () => {
       return () => {
         source.cancel('The request has been cancelled');
         clearTimeout(timeout);
+        dispatch(setStatus('normal'));
       };
     }
   }, [value]);
