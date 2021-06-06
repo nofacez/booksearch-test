@@ -1,5 +1,4 @@
 import React from 'react';
-import { uniqueId } from 'lodash';
 import { useDispatch } from 'react-redux';
 
 import routes from '../routes.js';
@@ -15,7 +14,7 @@ const BookSnippet = ({
   };
 
   return (
-    <li className="book-snippet mb-30" key={uniqueId()}>
+    <li className="book-snippet mb-30">
       <button type="button" onClick={handleClick}>
         { coverId ? <img src={coverSnippetUrl} alt="book cover" className="snippet-cover" /> : <h1 className="no-cover">?</h1>}
         <h2 className="snippet-title">{title}</h2>

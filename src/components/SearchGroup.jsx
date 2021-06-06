@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-import { getBooks, setLoading } from '../slices/booksSlice.js';
+import { getBooks, setLoading, setEmpty } from '../slices/booksSlice.js';
 import routes from '../routes.js';
 import '../images/search-group-bg.jpg';
 
@@ -14,48 +14,51 @@ const SearchGroup = () => {
   const dispatch = useDispatch();
   const { CancelToken } = axios;
   const source = CancelToken.source();
+  const { loading } = useSelector((state) => state.booksList);
 
   const getBooksList = async (bookTitle) => {
     try {
+      dispatch(setLoading(true));
       const response = await axios.get(routes.searchRoute(bookTitle),
         {
           cancelToken: source.token,
-          maxContentLength: 1000,
         });
       const bookslist = response.data.docs;
-      const filtered = bookslist.map((book) => {
-        const {
-          title, cover_i, author_name, publish_year, publisher, isbn, key,
-        } = book;
-        return {
-          title,
-          coverId: cover_i,
-          author: author_name,
-          date: publish_year,
-          publisher,
-          isbn,
-          key,
-        };
-      });
-      dispatch(getBooks(filtered));
-      dispatch(setLoading(false));
+      if (bookslist.length === 0) {
+        dispatch(setEmpty());
+      } else {
+        const filteredBooksList = bookslist.map((book) => {
+          const {
+            title, cover_i, author_name, publish_year, publisher, isbn, key,
+          } = book;
+          return {
+            title,
+            coverId: cover_i,
+            author: author_name,
+            date: publish_year,
+            publisher,
+            isbn,
+            key,
+          };
+        });
+        dispatch(getBooks(filteredBooksList));
+      }
     } catch (e) {
       console.error(e);
     }
+    dispatch(setLoading(false));
   };
 
   useEffect(() => {
     if (isFirstRender.current || value.length === 0) {
       isFirstRender.current = false;
     } else {
-      const timeoutSearch = setTimeout(() => {
-        dispatch(setLoading(true));
+      const timeout = setTimeout(() => {
         getBooksList(value);
       }, 1000);
       return () => {
         source.cancel('The request has been cancelled');
-        clearTimeout(timeoutSearch);
-        dispatch(setLoading(false));
+        clearTimeout(timeout);
       };
     }
   }, [value]);
@@ -64,7 +67,7 @@ const SearchGroup = () => {
     setValue(e.target.value);
   };
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     getBooksList(value);
   };
@@ -72,9 +75,9 @@ const SearchGroup = () => {
   return (
     <div className="section">
       <div className="search-group">
-        <form className="d-flex">
-          <input type="text" className="search-input" value={value} onChange={handleChange} required placeholder="Enter a book title..." />
-          <button type="submit" aria-label="search" className="search-button" onClick={handleClick} />
+        <form className="d-flex" onSubmit={handleSubmit}>
+          <input type="text" className="search-input" value={value} onChange={handleChange} placeholder="Enter a book title..." required />
+          <button type="submit" aria-label="search" className="search-button" disabled={loading} />
         </form>
       </div>
     </div>
