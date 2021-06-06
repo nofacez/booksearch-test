@@ -41,6 +41,10 @@ h3 {
   margin-right: 30px;
 }
 
+.mt-35 {
+  margin-top: 35px;
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
@@ -77,10 +81,6 @@ h3 {
   position: relative;
 
   width: 100%;
-}
-
-.header {
-  /* background: rgba(255, 235, 193, 0.877); */
 }
 
 .header-title {
@@ -176,10 +176,6 @@ h3 {
   justify-content: center;
 }
 
-.spinner-text {
-  margin-top: 35px;
-}
-
 .not-found {
   margin-top: 150px;
 }
@@ -194,6 +190,25 @@ h3 {
   height: 50px;
 
   background: url('../images/not-found.png') no-repeat;
+  z-index: 1;
+
+  content: '';
+}
+
+.network-issue {
+  margin-top: 150px;
+}
+
+.network-issue::before {
+  position: relative;
+  left: 0;
+  right: 0;
+  display: inline-block;
+
+  width: 50px;
+  height: 50px;
+
+  background: url('../images/no-connection.png') no-repeat;
   z-index: 1;
 
   content: '';
@@ -304,6 +319,10 @@ h3 {
   }
 
   .not-found {
+    margin-top: 100px;
+  }
+
+  .network-issue {
     margin-top: 100px;
   }
 }
