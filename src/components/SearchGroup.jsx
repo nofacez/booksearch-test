@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { getBooks, setLoading } from '../slices/booksSlice.js';
 import routes from '../routes.js';
+import '../images/search-group-bg.jpg';
 
 const SearchGroup = () => {
   const [value, setValue] = useState('');
@@ -36,7 +37,6 @@ const SearchGroup = () => {
           key,
         };
       });
-      console.log(filtered);
       dispatch(getBooks(filtered));
       dispatch(setLoading(false));
     } catch (e) {
@@ -69,11 +69,10 @@ const SearchGroup = () => {
       <div className="search-group">
         <form className="d-flex">
           <input type="text" className="search-input" value={value} onChange={handleChange} required placeholder="Enter a book title..." />
-          <button type="submit" className="search-button">Send</button>
+          <button type="submit" aria-label="search" className="search-button" />
         </form>
       </div>
     </div>
-
   );
 };
 
