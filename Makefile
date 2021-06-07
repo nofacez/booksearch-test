@@ -1,3 +1,6 @@
+install:
+	npm install
+
 build:
 	npm run clean
 	npm run build
