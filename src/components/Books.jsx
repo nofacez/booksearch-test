@@ -3,29 +3,31 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { uniqueId } from 'lodash';
 import { BounceLoader } from 'react-spinners';
+import { useTranslation } from 'react-i18next';
 import BookSnippet from './BookSnippet.jsx';
 
 const Books = () => {
   const { books, status } = useSelector((state) => state.booksList);
+  const { t } = useTranslation();
   const Spinner = () => (
     <div className="spinner-container">
       <div className="spinner">
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">{ t('spinnerSr') }</span>
         <BounceLoader size={50} />
       </div>
-      <p className="spinner-text mt-35">Browsing the shelves...</p>
+      <p className="spinner-text mt-35">{ t('spinnerText') }</p>
     </div>
   );
   const NotFound = () => (
     <div className="not-found">
-      <p className="mt-35">We couldn&apos;t find anything</p>
-      <p>That&apos;s what happens if you don&apos;t return books to the library</p>
+      <p className="mt-35">{ t('notFound1') }</p>
+      <p>{ t('notFound2') }</p>
     </div>
   );
   const NetworkIssue = () => (
     <div className="network-issue">
-      <p className="mt-35">Oops</p>
-      <p>We couldn&apos;t reach the Web :(</p>
+      <p className="mt-35">{ t('networkIssue1') }</p>
+      <p>{ t('networkIssue2') }</p>
     </div>
   );
 

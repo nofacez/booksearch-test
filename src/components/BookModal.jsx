@@ -16,8 +16,7 @@ const BookModal = () => {
   };
 
   const currentBook = find(books, { key: bookId });
-  const getfirstDate = () => Math.min(...currentBook.date);
-
+  const getfirstDate = () => (currentBook.date ? Math.min(...currentBook.date) : '???');
   return (
     isOpened && (
     <ReactModal
@@ -42,7 +41,7 @@ const BookModal = () => {
     >
       { currentBook.coverId ? <img src={routes.mediumCoverRoute(currentBook.coverId)} alt="medium book cover" /> : <h1 className="no-cover-lg">?</h1>}
       <h1 className="modal-book-title mb-10">{ currentBook.title }</h1>
-      <h3 className="mb-10">{ currentBook.author.join(' ').trim() }</h3>
+      <h3 className="mb-10">{ currentBook.author ? currentBook.author.join(' ').trim() : '???' }</h3>
       <p>
         First published:
         {' '}
@@ -51,13 +50,12 @@ const BookModal = () => {
       <p>
         Publisher:
         {' '}
-        {currentBook.publisher[0]}
-        ...
+        {currentBook.publisher ? `${currentBook.publisher[0]}...` : '???'}
       </p>
       <p className="mb-10">
         ISBN:
         {' '}
-        {currentBook.isbn.slice(0, 4).join(', ')}
+        {currentBook.isbn ? currentBook.isbn.slice(0, 4).join(', ') : '???'}
       </p>
       <button type="button" onClick={handleClose}>Close</button>
     </ReactModal>

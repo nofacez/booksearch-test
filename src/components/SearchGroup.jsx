@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 import React, { useState, useEffect, useRef } from 'react';
@@ -19,10 +20,7 @@ const SearchGroup = () => {
   const getBooksList = async (bookTitle) => {
     try {
       dispatch(setStatus('loading'));
-      const response = await axios.get(routes.searchRoute(bookTitle),
-        {
-          cancelToken: source.token,
-        });
+      const response = await axios.get(routes.searchRoute(bookTitle), { cancelToken: source.token });
       const bookslist = response.data.docs;
       if (bookslist.length === 0) {
         dispatch(setStatus('noData'));
