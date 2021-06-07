@@ -29,22 +29,10 @@ const BookModal = () => {
       isOpen={isOpened}
       onRequestClose={handleClose}
       className="book-modal"
+      overlayClassName="overlay"
       ariaHideApp={false}
-      style={
-        {
-          overlay: {
-            position: 'fixed',
-            display: 'flex',
-            justifyContent: 'center',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          },
-        }
-      }
     >
+      <button type="button" aria-label="close modal" onClick={handleClose} className="modal-close-top" />
       {getCover()}
       <h1 className="modal-book-title mb-10">{ currentBook.title }</h1>
       <h3 className="mb-10">{ getAuthor() }</h3>

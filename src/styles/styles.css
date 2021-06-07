@@ -156,7 +156,6 @@ h3 {
   height: 40%;
 
   background: url('../images/search.png') no-repeat;
-  z-index: 1;
 
   content: '';
 }
@@ -278,6 +277,17 @@ h3 {
 
 /** MODAL **/
 
+.overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .book-modal {
   display: flex;
   flex-wrap: wrap;
@@ -288,7 +298,8 @@ h3 {
   max-width: 700px;
   border: 1px solid #ccc;
   background: #fff;
-  overflow: hidden;
+  overflow: auto;
+  -webkit-overflow-scrolling: 'touch';
   border-radius: 10px;
   outline: none;
   padding: 20px;
@@ -301,6 +312,43 @@ h3 {
   font-style: italic;
   white-space: pre-wrap;
   margin-bottom: 10px;
+}
+
+.modal-close-top {
+  position: absolute;
+  left: 90%;
+  height: 20px;
+  width: 20px;
+  background: none;
+  border: none;
+}
+
+.modal-close-top:before {
+  position: relative;
+  left: 0;
+  right: 0;
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+
+  background: url('../images/close-sm.png') no-repeat;
+
+  content: '';
+}
+
+.modal-close-top:hover {
+  cursor: pointer;
+}
+
+.modal-close {
+  padding: 15px;
+  border: none;
+}
+
+.modal-close:hover {
+  cursor: pointer;
+  background-color: rgb(175, 175, 175);
 }
 
 @media (max-width: 1000px) {
