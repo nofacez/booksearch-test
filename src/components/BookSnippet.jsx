@@ -10,6 +10,7 @@ const BookSnippet = ({
   const coverSnippetUrl = routes.smallCoverRoute(coverId);
   const dispatch = useDispatch();
   const handleClick = () => {
+    document.body.style.overflow = 'hidden';
     dispatch(openModal({ id }));
   };
 

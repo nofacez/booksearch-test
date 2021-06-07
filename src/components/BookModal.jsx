@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import ReactModal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,15 +15,20 @@ const BookModal = () => {
   const { isOpened, bookId } = useSelector((state) => state.booksInfo);
 
   const handleClose = () => {
+    document.body.style.overflow = 'unset';
     dispatch(closeModal());
   };
+
+  if (isOpened) {
+    document.body.style.overflowY = 'hidden';
+  }
 
   const currentBook = find(books, { key: bookId });
   const getfirstDate = () => (currentBook.date ? Math.min(...currentBook.date) : t('modal.noInfo'));
   const getPublisher = () => (currentBook.publisher ? `${currentBook.publisher[0]}...` : t('modal.noInfo'));
   const getAuthor = () => (currentBook.author ? currentBook.author.join(' ').trim() : t('modal.noInfo'));
-  const getIsbn = () => (currentBook.isbn ? currentBook.isbn.slice(0, 4).join(', ') : t('modal.noInfo'));
-  const getCover = () => (currentBook.coverId ? <img src={routes.mediumCoverRoute(currentBook.coverId)} alt="medium book cover" /> : <h1 className="no-cover-lg">?</h1>);
+  const getIsbn = () => (currentBook.isbn ? currentBook.isbn.slice(0, 2).join(', ') : t('modal.noInfo'));
+  const getCover = () => (currentBook.coverId ? <img src={routes.mediumCoverRoute(currentBook.coverId)} alt="medium book cover" className="modal-book-cover" /> : <h1 className="no-cover-lg">?</h1>);
   return (
     isOpened && (
     <ReactModal
@@ -48,7 +54,9 @@ const BookModal = () => {
         { t('modal.isbn') }
         {getIsbn()}
       </p>
-      <button type="button" onClick={handleClose} className="modal-close">{ t('buttons.close') }</button>
+      {/* <div className="modal-footer">
+        <button type="button" onClick={handleClose} className="modal-close">{ t('buttons.close') }</button>
+      </div> */}
     </ReactModal>
     )
   );

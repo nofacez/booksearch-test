@@ -44,7 +44,7 @@ const Books = () => {
   }
 
   return (
-    <div className="section">
+    <div className="section books-section">
       <ul className="books-list">
         { books.map(({
           coverId, title, author, key,

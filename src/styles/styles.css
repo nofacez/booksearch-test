@@ -4,9 +4,10 @@
   padding: 0;
 }
 
+/** Fixed issue when scrollbar moved content **/
+
 html {
-  overflow-x: hidden;
-  margin-right: calc(-1 * (100vw - 100%));
+  width: 100vw;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
   padding: 0;
   height: 100%;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .container {
@@ -89,6 +91,12 @@ h3 {
 
 .main {
   text-align: center;
+  flex-wrap: wrap;
+}
+
+.books-section {
+  display: flex;
+  justify-content: center;
 }
 
 .search-group {
@@ -215,6 +223,7 @@ h3 {
 
 .books-list {
   display: flex;
+  width: 80%;
   flex-wrap: wrap;
   margin-right: 0;
   justify-content: space-evenly;
@@ -229,7 +238,7 @@ h3 {
   text-align: center;
 
   justify-content: center;
-  flex-basis: 500px;
+  flex-basis: 400px;
   width: 30%;
 
   background: rgb(248, 248, 248);
@@ -296,21 +305,19 @@ h3 {
   align-items: center;
   top: 25vh;
   max-width: 700px;
+  min-width: 400px;
   border: 1px solid #ccc;
   background: #fff;
-  overflow: auto;
-  -webkit-overflow-scrolling: 'touch';
+
   border-radius: 10px;
   outline: none;
   padding: 20px;
 }
 
 .modal-book-title {
-  overflow: hidden;
   font-size: 25px;
   font-weight: 700;
   font-style: italic;
-  white-space: pre-wrap;
   margin-bottom: 10px;
 }
 
@@ -344,6 +351,7 @@ h3 {
 .modal-close {
   padding: 15px;
   border: none;
+  border-radius: 15px;
 }
 
 .modal-close:hover {
@@ -357,7 +365,7 @@ h3 {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 500px), (max-height: 500px) {
   .header-title {
     font-size: 34px;
   }
@@ -372,5 +380,35 @@ h3 {
 
   .network-issue {
     margin-top: 100px;
+  }
+
+  .book-modal {
+    top: 20vh;
+    max-height: 400px;
+    min-width: 300px;
+  }
+
+  .modal-book-cover {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  .no-cover-lg {
+    font-size: 100px;
+  }
+
+  .modal-book-title {
+    font-size: 20px;
+  }
+
+  .book-modal p {
+    font-size: 14px;
+  }
+
+  .book-modal h3 {
+    font-size: 14px;
+  }
+
+  .modal-close {
+    padding: 10px;
   }
 }
