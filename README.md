@@ -17,10 +17,10 @@ $ make start
 # Demo
 
 ## Main page
-[Main page](https://i.imgur.com/Gofy8uc.jpg)
+![Main page](https://i.imgur.com/Gofy8uc.jpg)
 
 ## Search results
-[Search results](https://i.imgur.com/dX12lsy.jpg)
+![Search results](https://i.imgur.com/dX12lsy.jpg)
 
 ## Modal
-[Modal](https://i.imgur.com/JFAt9Yc.jpg)
+![Modal](https://i.imgur.com/JFAt9Yc.jpg)
