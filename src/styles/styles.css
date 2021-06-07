@@ -76,7 +76,7 @@ h3 {
 }
 
 .app {
-  height: auto;
+  height: 100%;
 }
 
 .section {
@@ -92,6 +92,8 @@ h3 {
 .main {
   text-align: center;
   flex-wrap: wrap;
+  min-height: calc(100vh - 165px - 75px);
+  margin-bottom: 20px;
 }
 
 .books-section {
@@ -357,6 +359,20 @@ h3 {
 .modal-close:hover {
   cursor: pointer;
   background-color: rgb(175, 175, 175);
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 @media (max-width: 1000px) {

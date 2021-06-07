@@ -4,17 +4,20 @@ import getStore from '../app/store.js';
 import Main from './Main.jsx';
 import Header from './Header.jsx';
 import BookModal from './BookModal.jsx';
+import Footer from './Footer.jsx';
 
 const App = () => {
   const store = getStore();
   return (
-    <Provider store={store}>
-      <div className="app">
+    <div className="app">
+      <Provider store={store}>
         <Header />
         <Main />
-      </div>
-      <BookModal />
-    </Provider>
+        <Footer />
+        <BookModal />
+      </Provider>
+    </div>
+
   );
 };
 
