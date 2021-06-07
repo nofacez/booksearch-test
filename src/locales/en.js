@@ -11,5 +11,11 @@ export default {
     buttons: {
       close: 'Close',
     },
+    modal: {
+      published: 'First published: ',
+      publisher: 'Publisher: ',
+      isbn: 'ISBN: ',
+      noInfo: '???',
+    },
   },
 };
